@@ -1,0 +1,35 @@
+micronaut:
+  application:
+    name: pocMicronautKotlinJwt
+  security:
+    endpoints:
+      login:
+        enabled: true
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              #Create MD5 with geradorNewUser
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:daad32cc94446df92d8798735c41b803}"'
+              jws-algorithm: HS256
+datasources:
+  default:
+    url: jdbc:mysql://localhost:3306/dev
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'root'
+    dialect: MYSQL
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: true
+
+flyway:
+  datasources:
+    default:
+      enabled: true
